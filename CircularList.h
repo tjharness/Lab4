@@ -412,3 +412,6 @@ template < class T >
 void CircularList<T>::mouseClicked(int x, int y) {}
 
 #endif
+void CircularList<T>::mouseClicked(int x, int y) {}
+
+#endif

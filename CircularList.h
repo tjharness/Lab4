@@ -59,12 +59,12 @@ DoubleNode<T>* CircularList<T>::find(int index)
    if (index >= loc_pos)
    {
        dist_next = index - loc_pos; //distance without the bridge (next refs, positive)
-       dist_prev = -1*(sz + loc_pos - index); //distance using the bridge (prev refs, negative)
+       dist_prev = -1*(sze + loc_pos - index); //distance using the bridge (prev refs, negative)
    }
    else
    {
        dist_prev = -1*(loc_pos - index); //distance without the bridge (prev refs, negative)
-       dist_next = (sz - loc_pos) + index; //distance using the bridge (next refs, positive)
+       dist_next = (sze - loc_pos) + index; //distance using the bridge (next refs, positive)
    }
 
    //DO THIS which distance is smaller?
@@ -135,29 +135,35 @@ void CircularList<T>::remove(int index)
    //DO THIS
    //remember to move loc and loc_pos to the location of the removal
    //remember to delete the node after it has been removed from the list
+
    if (index >= 1 && index <= sze)
    {
 
       if (sze == 1) //special case
       {
-
-
-
-
-
-
+          removeAll();
       }
       else
       {
-         //use local variables
+          DoubleNode<T>* curr = find(index);
+          DoubleNode<T>* prev = curr -> getPrev();
+		  DoubleNode<T>* next = curr -> getNext();
+		  prev -> setNext(next);
+		  next -> setPrev(prev);
 
-
-
-
-
-
+		  if(index == sze)
+          {
+              loc = next;
+              loc_pos = 1;
+              sze--;
+		  }
+		  else
+	      {
+		      loc = next;
+		      loc_pos = index;
+		      sze--;
+          }
       }
-      sze--;
    }
 }
 
@@ -409,9 +415,6 @@ void CircularList<T>::draw(Cairo::RefPtr<Cairo::Context> cr, int width, int heig
 }
 
 template < class T >
-void CircularList<T>::mouseClicked(int x, int y) {}
-
-#endif
 void CircularList<T>::mouseClicked(int x, int y) {}
 
 #endif

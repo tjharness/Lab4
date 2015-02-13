@@ -17,12 +17,12 @@ LINK = $(CC) $(LIB_DIRS) -o
 
 all: Project
 
-Project: 		$(FILES)
-			$(LINK) $(EXECUTABLE) $(FILES) $(LIBS)
+Project:			$(FILES)
+					$(LINK) $(EXECUTABLE) $(FILES) $(LIBS)
 
-CLGUI.o:		CLGUI.cpp CLGUI.h 
-			$(COMPILE) CLGUI.cpp
+CLGUI.o:			CLGUI.cpp CLGUI.h 
+					$(COMPILE) CLGUI.cpp
 
 CLGUIDriver.o:		CLGUIDriver.cpp 
-			$(COMPILE) CLGUIDriver.cpp	
+					$(COMPILE) CLGUIDriver.cpp	
 

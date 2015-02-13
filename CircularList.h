@@ -2,7 +2,6 @@
 #define CIRCULARLIST_H
 
 #include "CircularListIterator.h"
-
 #include "Drawable.h"
 #include "Line.h"
 #include "Circle.h"
@@ -141,11 +140,13 @@ void CircularList<T>::remove(int index)
 
       if (sze == 1) //special case
       {
-          removeAll();
+          delete loc;
+          loc = 0;
+          loc_pos = 0;
       }
       else
       {
-          DoubleNode<T>* curr = find(index);
+		  DoubleNode<T>* curr = find(index);
           DoubleNode<T>* prev = curr -> getPrev();
 		  DoubleNode<T>* next = curr -> getNext();
 		  prev -> setNext(next);
@@ -155,14 +156,13 @@ void CircularList<T>::remove(int index)
           {
               loc = next;
               loc_pos = 1;
-              sze--;
 		  }
 		  else
 	      {
 		      loc = next;
 		      loc_pos = index;
-		      sze--;
           }
+		sze--;
       }
    }
 }
